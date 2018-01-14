@@ -24,12 +24,14 @@ app.get(api, function (req, res) {
 
   var ipaddress = req.ip;
   var languages = req.acceptsLanguages();
-  var software = req.useragent.os;
+  var os = req.useragent.os;
+  var browser = req.useragent.browser;
   
   res.json({
     "ipaddress": ipaddress,
     "languages": languages[0],
-    "software": software
+    "os": os,
+    "browser": browser
   });
   
   
