@@ -3,6 +3,7 @@
 
 // init project
 var express = require('express');
+var useragent = require('express-useragent');
 var app = express();
 
 // we've started you off with Express, 
@@ -10,6 +11,7 @@ var app = express();
 
 // http://expressjs.com/en/starter/static-files.html
 app.use(express.static('public'));
+app.use(useragent.express());
 
 var api = "/api/whoami";
 
@@ -18,12 +20,16 @@ app.get("/", function(req, res){
   res.sendFile("_dir/public/index.html");
 });
 
-app.get("api", function (req, res) {
+app.get(api, function (req, res) {
 
   var ipaddress = req.ip;
+  var languages = req.acceptsLanguages();
+  var software = req.useragent.os;
   
   res.json({
-    "ipaddress": ipaddress
+    "ipaddress": ipaddress,
+    "languages": languages[0],
+    "software": software
   });
   
   
