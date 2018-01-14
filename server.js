@@ -26,12 +26,7 @@ app.post("/dreams", function (request, response) {
   response.sendStatus(200);
 });
 
-// Simple in-memory store for now
-var dreams = [
-  "Find and count some sheep",
-  "Climb a really tall mountain",
-  "Wash the dishes"
-];
+
 
 // listen for requests :)
 var listener = app.listen(process.env.PORT, function () {
