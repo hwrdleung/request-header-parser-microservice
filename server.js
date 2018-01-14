@@ -11,10 +11,22 @@ var app = express();
 // http://expressjs.com/en/starter/static-files.html
 app.use(express.static('public'));
 
+var api = "/api/whoami";
+
 // http://expressjs.com/en/starter/basic-routing.html
-app.get("/api/whoami", function (request, response) {
-  response.json({
+app.get("/", function(req, res){
+  res.sendFile("_dir/public/index.html");
+});
+
+app.get("api", function (req, res) {
+
+  var ipaddress = req.ip;
+  
+  res.json({
+    "ipaddress": ipaddress
   });
+  
+  
 });
 
 // listen for requests :)
